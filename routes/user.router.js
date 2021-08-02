@@ -15,9 +15,6 @@ const { Router } = require('express'), {
         validateRole,
         tieneRole
     } = require('../middlewares/index');
-
-
-
 //metodo get
 router.get('/', usersGet);
 //metodo put
@@ -36,6 +33,7 @@ router.post('/', [
     check('role').custom(esRole),
     validarCampos
 ], usersPost);
+
 //metodo delete
 router.delete('/:id', [
     validateJWT,
