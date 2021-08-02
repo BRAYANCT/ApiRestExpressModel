@@ -2,6 +2,8 @@ const express = require('express'),
     //dotenv = require('dotenv').config(),
     cors = require('cors'),
     userRouters = require('../routes/user.router'),
+    loginRouters = require('../routes/auth.router'),
+
     { dbConnection } = require('../database/config');
 
 
@@ -10,7 +12,8 @@ class Server {
         this.app = express();
         this.port = process.env.PORT;
         this.usersPath = '/api/users';
-        //conectar a la base de datos
+        this.autPath = '/api/auth'
+            //conectar a la base de datos
         this.connectDB();
         //middelwares
         this.middelwares();
@@ -30,6 +33,7 @@ class Server {
     }
     routes() {
         this.app.use(this.usersPath, userRouters);
+        this.app.use(this.autPath, loginRouters);
     }
     listen() {
         this.app.listen(this.port, () => {

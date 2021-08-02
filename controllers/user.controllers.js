@@ -59,10 +59,14 @@ const usersGet = async(req, res = response) => {
         const { id } = req.params;
         //borrar fisicamente
         //const user = await User.findByIdAndDelete(id);
-        const user = await User.findByIdAndUpdate(id, { condition: false });
+        //  const uid = req.uid;
+        const user = await User.findByIdAndUpdate(id, { condition: false }),
+            userAuthenti = req.user;
+
         res.json({
             msg: 'Delete Api - controlador',
-            user
+            user,
+            userAuthenti
         });
     }
 
